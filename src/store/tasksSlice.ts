@@ -124,6 +124,8 @@ export const tasksSlice = createSlice({
       const { sourceIndex, destinationIndex } = action.payload;
       const [movedTask] = state.tasks.splice(sourceIndex, 1); // Remove the task
       state.tasks.splice(destinationIndex, 0, movedTask); // Insert at new position
+      state.filteredTasks = applyFilters(state.tasks, state.filter);
+
     },
   },
 });
