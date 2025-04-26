@@ -1,13 +1,7 @@
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { deleteTask, toggleTaskStatus } from "@/store/tasksSlice";
 import { Button, IconButton, Menu, Portal } from "@chakra-ui/react";
-import {
-  Check,
-  MoreHorizontal,
-  Pencil,
-  Square,
-  Trash2,
-} from "lucide-react";
+import { Check, MoreHorizontal, Pencil, Square, Trash2 } from "lucide-react";
 import { Task } from "../../../../task";
 import { RightDrawer } from "@/app/components/drawer";
 
@@ -17,10 +11,6 @@ interface MenuOptionsProps {
 
 export const MenuOptions = ({ task }: MenuOptionsProps) => {
   const dispatch = useAppDispatch();
-
-  //   const handleToggleStatus = () => {
-  //     dispatch(toggleTaskStatus(task.id));
-  //   };
 
   const handleDelete = () => {
     if (confirm("Are you sure you want to delete this task?")) {

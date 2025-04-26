@@ -1,6 +1,6 @@
 "use client";
 
-import { CloseButton, Drawer, Portal } from "@chakra-ui/react";
+import { CloseButton, createListCollection, Drawer, Portal } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 
 import TaskForm from "./task-form";
@@ -50,3 +50,20 @@ export const RightDrawer = ({ children, task }: DrawerProps) => {
     </Drawer.Root>
   );
 };
+
+export const taskCategorys = createListCollection({
+    items: [
+      { label: "All categories", value: "All" },
+      { label: "Office", value: "Office" },
+      { label: "Personal", value: "Personal" },
+      { label: "Others", value: "Others" },
+    ],
+  });
+  
+  export const taskStatus = createListCollection({
+    items: [
+      { label: "All Status", value: "All" },
+      { label: "Completed", value: "Completed" },
+      { label: "Pending", value: "Pending" },
+    ],
+  });

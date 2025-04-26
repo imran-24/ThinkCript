@@ -11,7 +11,7 @@ const sampleTasks: Task[] = [
       "Finish writing the project proposal for the client meeting next week.",
     category: "Office",
     status: "Pending",
-    createdAt: Date.now() - 86400000 * 2, // 2 days ago
+    createdAt: Date.now() - 86400000 * 2,
   },
   {
     id: "2",
@@ -19,7 +19,7 @@ const sampleTasks: Task[] = [
     description: "Buy fruits, vegetables, and other essentials",
     category: "Personal",
     status: "Completed",
-    createdAt: Date.now() - 86400000, // 1 day ago
+    createdAt: Date.now() - 86400000,
   },
   {
     id: "3",
@@ -27,7 +27,7 @@ const sampleTasks: Task[] = [
     description: "Call the dentist office to schedule a checkup",
     category: "Personal",
     status: "Pending",
-    createdAt: Date.now() - 43200000, // 12 hours ago
+    createdAt: Date.now() - 43200000,
   },
   {
     id: "4",
@@ -35,15 +35,15 @@ const sampleTasks: Task[] = [
     description: "Prepare slides for the weekly team meeting",
     category: "Office",
     status: "Pending",
-    createdAt: Date.now() - 21600000, // 6 hours ago
+    createdAt: Date.now() - 21600000,
   },
   {
     id: "5",
     title: "Fix bike",
     description: "Take bike to repair shop or fix the flat tire",
-    category: "Other",
+    category: "Others",
     status: "Pending",
-    createdAt: Date.now() - 10800000, // 3 hours ago
+    createdAt: Date.now() - 10800000,
   },
 ];
 
@@ -90,9 +90,9 @@ export const tasksSlice = createSlice({
       action: PayloadAction<{ id: string; task: Partial<Task> }>
     ) => {
       const { id, task } = action.payload;
-      const index = state.tasks.findIndex((t) => t.id === id);
-      if (index !== -1) {
-        state.tasks[index] = { ...state.tasks[index], ...task };
+      const existingTask = state.tasks.find((t) => t.id === id);
+      if (existingTask) {
+        Object.assign(existingTask, task);
       }
       state.filteredTasks = applyFilters(state.tasks, state.filter);
     },
@@ -101,7 +101,7 @@ export const tasksSlice = createSlice({
       state.filteredTasks = applyFilters(state.tasks, state.filter);
     },
     toggleTaskStatus: (state, action: PayloadAction<string>) => {
-      const task = state.tasks.find((task) => task.id === action.payload);
+      const task = state.tasks.find((t) => t.id === action.payload);
       if (task) {
         task.status = task.status === "Completed" ? "Pending" : "Completed";
       }
