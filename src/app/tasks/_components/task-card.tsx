@@ -8,11 +8,9 @@ import {
   CardBody,
   Flex,
   HStack,
-  IconButton,
   Text,
 } from "@chakra-ui/react";
 import { MenuOptions } from "./menu";
-import { Grip } from "lucide-react";
 
 interface TaskCardProps {
   task: Task;
