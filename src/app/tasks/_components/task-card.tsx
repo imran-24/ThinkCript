@@ -1,7 +1,16 @@
 "use client";
 
 import { Task } from "../../../../task";
-import { Badge, Box, Card, CardBody, Flex, HStack, IconButton, Text } from "@chakra-ui/react";
+import {
+  Badge,
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  HStack,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
 import { MenuOptions } from "./menu";
 import { Grip } from "lucide-react";
 
@@ -21,26 +30,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, provided }) => {
       ref={provided.innerRef}
       {...provided.draggableProps}
     >
-      <CardBody>
+      <CardBody {...provided.dragHandleProps}>
         <Flex justify='space-between' align='flex-start' mb={2}>
           <Box>
-            <IconButton
-              size='sm'
-              p={1}
-              {...provided.dragHandleProps}
-              bg='blue.50'
-              variant='ghost'
-              opacity={0.5}
-              _hover={{
-                opacity: 1,
-                bg: "blue.100",
-              }}
-              aria-label='Drag task'
-              borderRadius='md'
-            >
-              <Grip size={18} color='#3182CE' />
-            </IconButton>
-
             <Text
               fontSize='xl'
               fontWeight='normal'
