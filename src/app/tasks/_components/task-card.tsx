@@ -8,15 +8,19 @@ import {
   CardBody,
   Flex,
   HStack,
+  IconButton,
   Text,
 } from "@chakra-ui/react";
 import { MenuOptions } from "./menu";
+import { Grip } from "lucide-react";
 
 interface TaskCardProps {
   task: Task;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  provided: any
 }
 
-export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+export const TaskCard: React.FC<TaskCardProps> = ({ task, provided }) => {
 
   return (
     <Card.Root
@@ -24,10 +28,17 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
       backgroundColor={task.status === "Completed" ? "gray.50" : "white"}
       _hover={{ shadow: "md" }}
       transition='all 0.2s'
+      ref={provided.innerRef}
+      {...provided.draggableProps}
     >
       <CardBody>
         <Flex justify='space-between' align='flex-start' mb={2}>
           <Box>
+            <IconButton
+            {...provided.dragHandleProps}
+             variant={"ghost"} opacity={50} _hover={{ opacity: 100}}>
+                <Grip />
+            </IconButton>
             <Text
               fontSize='xl'
               fontWeight='normal'

@@ -119,6 +119,12 @@ export const tasksSlice = createSlice({
       state.filter.searchQuery = action.payload;
       state.filteredTasks = applyFilters(state.tasks, state.filter);
     },
+    reorderTasks(state, action: PayloadAction<{ sourceIndex: number; destinationIndex: number }>
+    ) {
+      const { sourceIndex, destinationIndex } = action.payload;
+      const [movedTask] = state.tasks.splice(sourceIndex, 1); // Remove the task
+      state.tasks.splice(destinationIndex, 0, movedTask); // Insert at new position
+    },
   },
 });
 
@@ -129,6 +135,7 @@ export const {
   toggleTaskStatus,
   setCategoryFilter,
   setStatusFilter,
+  reorderTasks,
   setSearchQuery,
 } = tasksSlice.actions;
 

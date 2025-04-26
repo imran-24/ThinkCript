@@ -20,7 +20,7 @@ import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
 import { SelectFilter } from "./select-filter";
 import { taskCategorys, taskStatus } from "@/app/components/drawer";
-import { Filter, ListFilter } from "lucide-react";
+import { ListFilter } from "lucide-react";
 
 const TaskFilter: React.FC = () => {
   const dispatch = useAppDispatch();
