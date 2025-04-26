@@ -1,27 +1,17 @@
 "use client";
 
 import { Task } from "../../../../task";
-import {
-  Badge,
-  Box,
-  Card,
-  CardBody,
-  Flex,
-  HStack,
-  IconButton,
-  Text,
-} from "@chakra-ui/react";
+import { Badge, Box, Card, CardBody, Flex, HStack, IconButton, Text } from "@chakra-ui/react";
 import { MenuOptions } from "./menu";
 import { Grip } from "lucide-react";
 
 interface TaskCardProps {
   task: Task;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  provided: any
+  provided: any;
 }
 
 export const TaskCard: React.FC<TaskCardProps> = ({ task, provided }) => {
-
   return (
     <Card.Root
       variant='outline'
@@ -35,10 +25,22 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, provided }) => {
         <Flex justify='space-between' align='flex-start' mb={2}>
           <Box>
             <IconButton
-            {...provided.dragHandleProps}
-             variant={"ghost"} opacity={50} _hover={{ opacity: 100}}>
-                <Grip />
+              size='sm'
+              p={1}
+              {...provided.dragHandleProps}
+              bg='blue.50'
+              variant='ghost'
+              opacity={0.5}
+              _hover={{
+                opacity: 1,
+                bg: "blue.100",
+              }}
+              aria-label='Drag task'
+              borderRadius='md'
+            >
+              <Grip size={18} color='#3182CE' />
             </IconButton>
+
             <Text
               fontSize='xl'
               fontWeight='normal'
@@ -59,10 +61,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, provided }) => {
               </Badge>
             </HStack>
           </Box>
-          
-          <MenuOptions task={task}  />
+          <MenuOptions task={task} />
         </Flex>
-
         {task.description && (
           <Text
             mt={2}
@@ -72,9 +72,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, provided }) => {
             {task.description}
           </Text>
         )}
-
       </CardBody>
     </Card.Root>
   );
 };
-
