@@ -13,12 +13,12 @@ import {
   Draggable,
   DropResult,
 } from "@hello-pangea/dnd";
-// import { useAppDispatch } from "@/hooks/useAppDispatch";
-// import { reorderTasks } from "@/store/tasksSlice";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { reorderTasks } from "@/store/tasksSlice";
 
 const TaskList: React.FC = () => {
 
-//   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const [isMounted, setIsMounted] = useState(false);
   const { filteredTasks } = useSelector((state: RootState) => state.tasks);
@@ -56,7 +56,7 @@ const TaskList: React.FC = () => {
   const onDragEnd = (result: DropResult) => {
     if(!result.destination) return;
     console.log(result.destination.index, result.source.index)
-    // dispatch(reorderTasks({ sourceIndex: result.source.index, destinationIndex: result.destination.index }));    
+    dispatch(reorderTasks({ sourceIndex: result.source.index, destinationIndex: result.destination.index }));    
   }
 
   if (!isMounted) return null;
